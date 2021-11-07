@@ -5,6 +5,7 @@
 #![feature(global_asm)]
 
 use arch::bzimage::BzImage;
+use arch::consts::asm;
 use arch::ioport::IOPort;
 use core::fmt::Write;
 use core::panic::PanicInfo;
@@ -13,11 +14,21 @@ use uart::debug_port::DebugPort;
 use uart::i8250::I8250;
 
 global_asm!(
-    preprocess_asm!("../../../arch/x86/x86_64/src/bootblock_nomem.S"),
+    include_str!("../../../../arch/x86/x86_64/src/bootblock_nomem.S"),
+    pse = const asm::PSE,
+    pge = const asm::PGE,
+    pae = const asm::PAE,
+    efer = const asm::EFER,
+    lme = const asm::LME,
+    cd = const asm::CD,
+    nw = const asm::NW,
+    ts = const asm::TS,
+    mp = const asm::MP,
+    pg = const asm::PG,
+    wp = const asm::WP,
+    pe = const asm::PE,
     options(att_syntax)
 );
-
-use rpp_procedural::preprocess_asm;
 
 #[no_mangle]
 pub extern "C" fn _start(fdt_address: usize) -> ! {
