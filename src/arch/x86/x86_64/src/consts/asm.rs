@@ -17,3 +17,5 @@ pub const AM: usize = 0x40000;
 pub const NW: usize = 0x20000000;
 pub const CD: usize = 0x40000000;
 pub const PG: usize = 0x80000000;
+
+pub const CR0_PG: usize = 1 << 31;

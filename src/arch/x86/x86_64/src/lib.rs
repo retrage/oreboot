@@ -3,12 +3,13 @@
 #![feature(global_asm)]
 
 const PAGE_SIZE: usize = 4096;
-use rpp_procedural::preprocess_asm;
 
 pub mod acpi;
 pub mod bzimage;
 pub mod consts;
 pub mod ioport;
+
+use self::consts::asm;
 
 // NOTE: The ROM page table is defined by a symbol in the bootblock. It
 // will be populated at runtime in new_rom_util.
@@ -66,7 +67,21 @@ impl X86Util {
     }
 }
 
-global_asm!(preprocess_asm!("src/mode_switch.S"), options(att_syntax));
+global_asm!(
+    include_str!("mode_switch.S"),
+    pse = const asm::PSE,
+    pae = const asm::PAE,
+    efer = const asm::EFER,
+    lme = const asm::LME,
+    cd = const asm::CD,
+    nw = const asm::NW,
+    ts = const asm::TS,
+    mp = const asm::MP,
+    pg = const asm::PG,
+    wp = const asm::WP,
+    cr0_pg = const asm::CR0_PG,
+    options(att_syntax)
+);
 
 pub fn halt() -> ! {
     loop {
