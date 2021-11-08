@@ -1,7 +1,5 @@
 /* SPDX-License-Identifier: GPL-2.0-only */
 
-#include "asm_defs.h"
-
 /**
  * protected_mode_call_impl(
  *     RDI=func_ptr: u32,
