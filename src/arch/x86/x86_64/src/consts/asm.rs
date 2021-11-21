@@ -51,3 +51,25 @@ pub const MTRR_PHYS_MASK_VALID: usize = 1 << 11;
 
 pub const MTRR_TYPE_WRPROT: usize = 5;
 pub const MTRR_TYPE_WRBACK: usize = 6;
+
+#[macro_export]
+macro_rules! const_asm {
+    ($file : expr $(,)?) => {
+        global_asm!(
+            include_str!($file),
+            pse = const asm::PSE,
+            pge = const asm::PGE,
+            pae = const asm::PAE,
+            efer = const asm::EFER,
+            lme = const asm::LME,
+            cd = const asm::CD,
+            nw = const asm::NW,
+            ts = const asm::TS,
+            mp = const asm::MP,
+            pg = const asm::PG,
+            wp = const asm::WP,
+            pe = const asm::PE,
+            options(att_syntax),
+        );
+    };
+}

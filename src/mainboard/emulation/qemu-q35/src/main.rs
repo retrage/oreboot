@@ -13,22 +13,7 @@ use model::Driver;
 use uart::debug_port::DebugPort;
 use uart::i8250::I8250;
 
-global_asm!(
-    include_str!("../../../../arch/x86/x86_64/src/bootblock_nomem.S"),
-    pse = const asm::PSE,
-    pge = const asm::PGE,
-    pae = const asm::PAE,
-    efer = const asm::EFER,
-    lme = const asm::LME,
-    cd = const asm::CD,
-    nw = const asm::NW,
-    ts = const asm::TS,
-    mp = const asm::MP,
-    pg = const asm::PG,
-    wp = const asm::WP,
-    pe = const asm::PE,
-    options(att_syntax)
-);
+arch::const_asm!("../../../../arch/x86/x86_64/src/bootblock_nomem.S");
 
 #[no_mangle]
 pub extern "C" fn _start(fdt_address: usize) -> ! {
