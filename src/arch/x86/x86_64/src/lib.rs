@@ -9,6 +9,38 @@ pub mod bzimage;
 pub mod consts;
 pub mod ioport;
 
+#[macro_export]
+macro_rules! const_asm {
+    ($file : expr $(,)?) => {
+        global_asm!(
+            include_str!($file),
+            pse = const $crate::consts::x86::X86_CR4_PSE,
+            pge = const $crate::consts::x86::X86_CR4_PGE,
+            pae = const $crate::consts::x86::X86_CR4_PAE,
+            efer = const $crate::consts::msr::MSR_EFER,
+            lme = const $crate::consts::msr::EFER_LME,
+            cd = const $crate::consts::x86::X86_CR0_CD,
+            nw = const $crate::consts::x86::X86_CR0_NW,
+            ts = const $crate::consts::x86::X86_CR0_TS,
+            mp = const $crate::consts::x86::X86_CR0_MP,
+            pg = const $crate::consts::x86::X86_CR0_PG,
+            wp = const $crate::consts::x86::X86_CR0_WP,
+            pe = const $crate::consts::x86::X86_CR0_PE,
+            pte_p = const $crate::consts::x86::PG_P,
+            pte_rw = const $crate::consts::x86::PG_RW,
+            pte_ps = const $crate::consts::x86::PG_PS,
+            pte2_mpat = const $crate::consts::x86::PG_PAT,
+            mtrr_cap_msr = const $crate::consts::mtrr::MTRR_CAP_MSR,
+            mtrr_def_type_msr = const $crate::consts::mtrr::MTRR_DEF_TYPE_MSR,
+            mtrr_type_wrback = const $crate::consts::mtrr::MTRR_TYPE_WRBACK,
+            mtrr_phys_mask_valid = const $crate::consts::mtrr::MTRR_PHYS_MASK_VALID,
+            mtrr_def_type_en = const $crate::consts::mtrr::MTRR_DEF_TYPE_EN,
+            mtrr_type_wrprot = const $crate::consts::mtrr::MTRR_TYPE_WRPROT,
+            options(att_syntax),
+        );
+    };
+}
+
 // NOTE: The ROM page table is defined by a symbol in the bootblock. It
 // will be populated at runtime in new_rom_util.
 const ROM_DAT32: u32 = 0x20;
