@@ -14,22 +14,7 @@ use uart::i8250::I8250;
 use fsp_common as fsp;
 use fsp_qemu_sys as fsp64;
 
-global_asm!(
-    include_str!("../../../../arch/x86/x86_64/src/bootblock_nomem.S"),
-    pse = const asm::PSE,
-    pge = const asm::PGE,
-    pae = const asm::PAE,
-    efer = const asm::EFER,
-    lme = const asm::LME,
-    cd = const asm::CD,
-    nw = const asm::NW,
-    ts = const asm::TS,
-    mp = const asm::MP,
-    pg = const asm::PG,
-    wp = const asm::WP,
-    pe = const asm::PE,
-    options(att_syntax)
-);
+arch::const_asm!("../../../../arch/x86/x86_64/src/bootblock_nomem.S");
 
 fn call_fspm(
     fsp_base: usize,
