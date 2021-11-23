@@ -69,6 +69,7 @@ macro_rules! const_asm {
             pg = const $crate::consts::asm::PG,
             wp = const $crate::consts::asm::WP,
             pe = const $crate::consts::asm::PE,
+            cr0_pg = const $crate::consts::asm::CR0_PG,
             options(att_syntax),
         );
     };

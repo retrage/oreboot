@@ -1,5 +1,9 @@
 /* SPDX-License-Identifier: GPL-2.0-only */
 
+/* XXX: This list required to allow unused named arguments for rustc
+ * {pse} {pge} {pae} {efer} {lme} {cd} {nw} {ts} {mp} {pg} {wp} {pe} {cr0_pg}
+ */
+
 /**
  * protected_mode_call_impl(
  *     RDI=func_ptr: u32,
