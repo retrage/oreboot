@@ -5,7 +5,6 @@
 #![feature(global_asm)]
 
 use arch::bzimage::BzImage;
-use arch::consts::asm;
 use arch::ioport::IOPort;
 use core::fmt::Write;
 use core::panic::PanicInfo;
