@@ -97,10 +97,7 @@ impl X86Util {
     }
 }
 
-self::const_asm!(
-    include_str!("mode_switch.S"),
-    options(att_syntax)
-);
+self::const_asm!(include_str!("mode_switch.S"), options(att_syntax));
 
 pub fn halt() -> ! {
     loop {
