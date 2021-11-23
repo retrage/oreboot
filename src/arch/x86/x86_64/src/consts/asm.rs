@@ -1,26 +1,3 @@
-pub const EFER: usize = 0xC0000080;
-pub const LME: usize = 1 << 8;
-
-pub const PSE: usize = 0x10;
-pub const PGE: usize = 0x40;
-pub const PAE: usize = 0x20;
-pub const PGE_PAE: usize = 0x60;
-
-pub const PE: usize = 1;
-pub const MP: usize = 2;
-pub const EM: usize = 4;
-pub const TS: usize = 8;
-pub const ET: usize = 0x10;
-pub const NE: usize = 0x20;
-pub const WP: usize = 0x10000;
-pub const AM: usize = 0x40000;
-pub const NW: usize = 0x20000000;
-pub const CD: usize = 0x40000000;
-pub const PG: usize = 0x80000000;
-
-pub const CR0_CD: usize = 1 << 30;
-pub const CR0_PG: usize = 1 << 31;
-
 pub const PTE_P: usize = 0x0000000000000001;
 pub const PTE_RW: usize = 0x0000000000000002;
 pub const PTE_PS: usize = 0x0000000000000080;
@@ -57,20 +34,18 @@ macro_rules! const_asm {
     ($file : expr $(,)?) => {
         global_asm!(
             include_str!($file),
-            pse = const $crate::consts::asm::PSE,
-            pge = const $crate::consts::asm::PGE,
-            pae = const $crate::consts::asm::PAE,
-            efer = const $crate::consts::asm::EFER,
-            lme = const $crate::consts::asm::LME,
-            cd = const $crate::consts::asm::CD,
-            nw = const $crate::consts::asm::NW,
-            ts = const $crate::consts::asm::TS,
-            mp = const $crate::consts::asm::MP,
-            pg = const $crate::consts::asm::PG,
-            wp = const $crate::consts::asm::WP,
-            pe = const $crate::consts::asm::PE,
-            cr0_pg = const $crate::consts::asm::CR0_PG,
-            cr0_cd = const $crate::consts::asm::CR0_CD,
+            pse = const $crate::consts::x86::X86_CR4_PSE,
+            pge = const $crate::consts::x86::X86_CR4_PGE,
+            pae = const $crate::consts::x86::X86_CR4_PAE,
+            efer = const $crate::consts::msr::MSR_EFER,
+            lme = const $crate::consts::msr::EFER_LME,
+            cd = const $crate::consts::x86::X86_CR0_CD,
+            nw = const $crate::consts::x86::X86_CR0_NW,
+            ts = const $crate::consts::x86::X86_CR0_TS,
+            mp = const $crate::consts::x86::X86_CR0_MP,
+            pg = const $crate::consts::x86::X86_CR0_PG,
+            wp = const $crate::consts::x86::X86_CR0_WP,
+            pe = const $crate::consts::x86::X86_CR0_PE,
             pte_p = const $crate::consts::asm::PTE_P,
             pte_rw = const $crate::consts::asm::PTE_RW,
             pte_ps = const $crate::consts::asm::PTE_PS,
