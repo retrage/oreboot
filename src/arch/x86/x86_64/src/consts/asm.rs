@@ -70,6 +70,17 @@ macro_rules! const_asm {
             wp = const $crate::consts::asm::WP,
             pe = const $crate::consts::asm::PE,
             cr0_pg = const $crate::consts::asm::CR0_PG,
+            cr0_cd = const $crate::consts::asm::CR0_CD,
+            pte_p = const $crate::consts::asm::PTE_P,
+            pte_rw = const $crate::consts::asm::PTE_RW,
+            pte_ps = const $crate::consts::asm::PTE_PS,
+            pte2_mpat = const $crate::consts::asm::PTE2_MPAT,
+            mtrr_cap_msr = const $crate::consts::asm::MTRR_CAP_MSR,
+            mtrr_def_type_msr = const $crate::consts::asm::MTRR_DEF_TYPE_MSR,
+            mtrr_type_wrback = const $crate::consts::asm::MTRR_TYPE_WRBACK,
+            mtrr_phys_mask_valid = const $crate::consts::asm::MTRR_PHYS_MASK_VALID,
+            mtrr_def_type_en = const $crate::consts::asm::MTRR_DEF_TYPE_EN,
+            mtrr_type_wrprot = const $crate::consts::asm::MTRR_TYPE_WRPROT,
             options(att_syntax),
         );
     };
