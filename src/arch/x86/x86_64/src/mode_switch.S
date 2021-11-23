@@ -2,7 +2,7 @@
 
 /* XXX: This list required to allow unused named arguments for rustc
  * {pse} {pge} {pae} {efer} {lme} {cd} {nw} {ts} {mp} {pg} {wp} {pe}
- * {cr0_pg} {cr0_cd} {pte_p} {pte_rw} {pte_ps} {pte2_mpat}
+ * {pte_p} {pte_rw} {pte_ps} {pte2_mpat}
  * {mtrr_cap_msr} {mtrr_def_type_msr} {mtrr_type_wrback} {mtrr_phys_mask_valid}
  * {mtrr_def_type_en} {mtrr_type_wrprot}
  */
@@ -151,7 +151,7 @@ protected_mode_call_impl:
 
 	/* Disable paging. */
 	movl	%cr0, %eax
-	andl	$(~{cr0_pg}), %eax
+	andl	$(~{pg}), %eax
 	movl	%eax, %cr0
 
 	/* Disable long mode. */

@@ -21,7 +21,7 @@
 
 /* XXX: This list required to allow unused named arguments for rustc
  * {pse} {pge} {pae} {efer} {lme} {cd} {nw} {ts} {mp} {pg} {wp} {pe}
- * {cr0_pg} {cr0_cd} {pte_p} {pte_rw} {pte_ps} {pte2_mpat}
+ * {pte_p} {pte_rw} {pte_ps} {pte2_mpat}
  * {mtrr_cap_msr} {mtrr_def_type_msr} {mtrr_type_wrback} {mtrr_phys_mask_valid}
  * {mtrr_def_type_en} {mtrr_type_wrprot}
  */
@@ -353,7 +353,7 @@ addrsize_set_high:
 	//post_code_be_careful_about_al(0x2d)
 	/* Enable Cache-as-RAM mode by disabling cache. */
 	movl	%cr0, %eax
-	orl	/*$CR0_CacheDisable*/${cr0_cd}, %eax
+	orl	/*$CR0_CacheDisable*/${cd}, %eax
 	movl	%eax, %cr0
 
 	/* Enable cache for our code in Flash because we do XIP here */
