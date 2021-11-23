@@ -12,7 +12,9 @@ use model::Driver;
 use uart::debug_port::DebugPort;
 use uart::i8250::I8250;
 
-arch::const_asm!("../../../../arch/x86/x86_64/src/bootblock_nomem.S");
+arch::const_asm!(
+    include_str!("../../../../arch/x86/x86_64/src/bootblock_nomem.S"),
+);
 
 #[no_mangle]
 pub extern "C" fn _start(fdt_address: usize) -> ! {

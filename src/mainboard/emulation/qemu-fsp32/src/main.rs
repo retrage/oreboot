@@ -18,7 +18,9 @@ use fsp_qemu32_sys as fsp32;
 // introduces the symbols containing the FSP binary which get picked up by the linker.
 extern crate fsp_qemu32_sys;
 
-arch::const_asm!("../../../../arch/x86/x86_64/src/bootblock_nomem.S");
+arch::const_asm!(
+    include_str!("../../../../arch/x86/x86_64/src/bootblock_nomem.S"),
+);
 
 fn call_fspm(fsp_base: u32, fspm_entry: u32) -> u32 {
     let mut fspm_upd = fsp32::get_fspm_upd();

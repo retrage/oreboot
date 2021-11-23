@@ -14,7 +14,9 @@ use uart::i8250::I8250;
 use fsp_common as fsp;
 use fsp_qemu_sys as fsp64;
 
-arch::const_asm!("../../../../arch/x86/x86_64/src/bootblock_nomem.S");
+arch::const_asm!(
+    include_str!("../../../../arch/x86/x86_64/src/bootblock_nomem.S"),
+);
 
 fn call_fspm(
     fsp_base: usize,

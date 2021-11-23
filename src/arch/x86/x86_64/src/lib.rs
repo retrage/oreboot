@@ -11,9 +11,9 @@ pub mod ioport;
 
 #[macro_export]
 macro_rules! const_asm {
-    ($file : expr $(,)?) => {
+    ($asm:expr $(,)?) => {
         global_asm!(
-            include_str!($file),
+            $asm,
             pse = const $crate::consts::x86::X86_CR4_PSE,
             pge = const $crate::consts::x86::X86_CR4_PGE,
             pae = const $crate::consts::x86::X86_CR4_PAE,
@@ -97,7 +97,9 @@ impl X86Util {
     }
 }
 
-self::const_asm!("mode_switch.S");
+self::const_asm!(
+    include_str!("mode_switch.S")
+);
 
 pub fn halt() -> ! {
     loop {
