@@ -20,6 +20,7 @@ extern crate fsp_qemu32_sys;
 
 arch::const_asm!(
     include_str!("../../../../arch/x86/x86_64/src/bootblock_nomem.S"),
+    options(att_syntax)
 );
 
 fn call_fspm(fsp_base: u32, fspm_entry: u32) -> u32 {

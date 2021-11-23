@@ -16,6 +16,7 @@ use fsp_qemu_sys as fsp64;
 
 arch::const_asm!(
     include_str!("../../../../arch/x86/x86_64/src/bootblock_nomem.S"),
+    options(att_syntax)
 );
 
 fn call_fspm(

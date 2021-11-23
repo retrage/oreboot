@@ -14,6 +14,7 @@ use uart::i8250::I8250;
 
 arch::const_asm!(
     include_str!("../../../../arch/x86/x86_64/src/bootblock_nomem.S"),
+    options(att_syntax)
 );
 
 #[no_mangle]

@@ -11,7 +11,7 @@ pub mod ioport;
 
 #[macro_export]
 macro_rules! const_asm {
-    ($asm:expr $(,)?) => {
+    ($asm:expr, $(options($($option:ident),*))? $(,)?) => {
         global_asm!(
             $asm,
             pse = const $crate::consts::x86::X86_CR4_PSE,
@@ -36,7 +36,7 @@ macro_rules! const_asm {
             mtrr_phys_mask_valid = const $crate::consts::mtrr::MTRR_PHYS_MASK_VALID,
             mtrr_def_type_en = const $crate::consts::mtrr::MTRR_DEF_TYPE_EN,
             mtrr_type_wrprot = const $crate::consts::mtrr::MTRR_TYPE_WRPROT,
-            options(att_syntax),
+            options($($($option),*)?)
         );
     };
 }
@@ -98,7 +98,8 @@ impl X86Util {
 }
 
 self::const_asm!(
-    include_str!("mode_switch.S")
+    include_str!("mode_switch.S"),
+    options(att_syntax),
 );
 
 pub fn halt() -> ! {
