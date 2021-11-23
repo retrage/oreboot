@@ -1,9 +1,17 @@
 /* SPDX-License-Identifier: GPL-2.0-only */
 
 // Paging constants
-pub const PG_P: u64 = 1;
+pub const PG_P: u64 = 1 << 0;
 pub const PG_RW: u64 = 1 << 1;
+pub const PG_US: u64 = 1 << 2;
+pub const PG_PWT: u64 = 1 << 3;
+pub const PG_PCD: u64 = 1 << 4;
+pub const PG_A: u64 = 1 << 5;
+pub const PG_D: u64 = 1 << 6;
 pub const PG_PS: u64 = 1 << 7;
+pub const PG_G: u64 = 1 << 8;
+pub const PG_PAT: u64 = 1 << 12;
+pub const PG_XD: u64 = 1 << 63;
 
 pub const PAGE_SIZE: usize = 4096;
 

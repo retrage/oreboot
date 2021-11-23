@@ -1,8 +1,3 @@
-pub const PTE_P: usize = 0x0000000000000001;
-pub const PTE_RW: usize = 0x0000000000000002;
-pub const PTE_PS: usize = 0x0000000000000080;
-pub const PTE2_MPAT: usize = 0x0000000000001000;
-
 pub const NUM_FIXED_RANGES: usize = 88;
 pub const RANGES_PER_FIXED_MTRR: usize = 8;
 pub const MTRR_FIX_64K_00000: usize = 0x250;
@@ -46,10 +41,10 @@ macro_rules! const_asm {
             pg = const $crate::consts::x86::X86_CR0_PG,
             wp = const $crate::consts::x86::X86_CR0_WP,
             pe = const $crate::consts::x86::X86_CR0_PE,
-            pte_p = const $crate::consts::asm::PTE_P,
-            pte_rw = const $crate::consts::asm::PTE_RW,
-            pte_ps = const $crate::consts::asm::PTE_PS,
-            pte2_mpat = const $crate::consts::asm::PTE2_MPAT,
+            pte_p = const $crate::consts::x86::PG_P,
+            pte_rw = const $crate::consts::x86::PG_RW,
+            pte_ps = const $crate::consts::x86::PG_PS,
+            pte2_mpat = const $crate::consts::x86::PG_PAT,
             mtrr_cap_msr = const $crate::consts::asm::MTRR_CAP_MSR,
             mtrr_def_type_msr = const $crate::consts::asm::MTRR_DEF_TYPE_MSR,
             mtrr_type_wrback = const $crate::consts::asm::MTRR_TYPE_WRBACK,
